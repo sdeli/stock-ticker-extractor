@@ -4,6 +4,8 @@ const puppeteer = require('puppeteer');
 let mainPage = 'http://eoddata.com/stocklist/NYSE/A.htm';
 
 (async function stockTickerExtractor() {
+    console.log('Please be patient until the extraction will get complete, it can last up to 45 seconds');
+    
     let browser = await puppeteer.launch({
         headless: true,
         timeout : 3000000
@@ -84,7 +86,7 @@ function extractStockTickersOnPage(page) {
         let stockTickersArr = [];
 
         for (let i = 1; i < stockTicersContChildrenCount; i++) {
-            stockTickersArr.push(stockTicersContChildren[i].children[1].innerText);
+            stockTickersArr.push(stockTicersContChildren[i].children[0].innerText);
         }
 
         return stockTickersArr;
